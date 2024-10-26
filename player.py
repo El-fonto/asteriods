@@ -26,11 +26,16 @@ class Player(CircleShape):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
-            # TODO - Add rotating function, where K_a is rotating left, K_d is rotating right
-            # There are still things to review it, e.g. if rotate is working, how to determine the angle and 
-            pass
             self.rotate(dt*-1)
         if keys[pygame.K_d]:
-            # ?
             self.rotate(dt)
+        if keys[pygame.K_w]:
+            self.move(dt)
+        if keys[pygame.K_s]:
+            self.move(dt*-1)
+
+    def move(self, dt):
+        forward = pygame.Vector2(0, 1).rotate(self.rotation)
+        self.position += forward * PLAYER_SPEED * dt
+
  
