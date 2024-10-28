@@ -13,12 +13,14 @@ def main():
     asteroids = pygame.sprite.Group()
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
+    shots = pygame.sprite.Group()
 
     # containers
     Player.containers = (updatable, drawable)
     AsteroidField.containers = (updatable)
     Asteroid.containers = (asteroids, updatable, drawable)
 
+    # Object creation
     field = AsteroidField()
     player = Player (SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
@@ -28,12 +30,15 @@ def main():
 
 
     while True:
+        # quit button
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
     
-        screen.fill((0,0,0))
+        # paint screen
+        screen.fill("black")
 
+        # object iterations
         for update in updatable:
             update.update(dt)
 
